@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Spell1
     originalName: 
-    pivot: {x: -1.1599994, y: -10.809525}
+    pivot: {x: 0.5, y: -0.3}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 25
-      height: 21
+      width: 20
+      height: 20
     spriteID: e53d10e180a37726b9774dc326ccd86b
     spriteBone: []
     spriteOutline: []
@@ -154,10 +154,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 289
-        y: 227
-        width: 25
-        height: 21
+        x: 6
+        y: 6
+        width: 20
+        height: 20
       spriteId: e53d10e180a37726b9774dc326ccd86b
     linkedCells: []
     parentIndex: -1
@@ -177,4 +177,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 520, y: 420}
+  canvasSize: {x: 32, y: 32}

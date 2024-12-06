@@ -14,10 +14,16 @@ public class sendAnimationInfo : MonoBehaviour
     public void spellEndSpeed()
     {
         playerScript.moveSpeed = playerScript.setWalkSpeed;
+        resetAttack();
     }
 
     public void startSpell()
     {
         playerScript.spellSpawning();
+    }
+
+    public void resetAttack()
+    {
+        playerScript.resetIsAttacking();
     }
 }

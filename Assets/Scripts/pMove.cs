@@ -14,7 +14,7 @@ public class pMove : MonoBehaviour
     public int jumps;
     public int jumpToHave = 2;
     public bool isToTheRight = true;
-    public bool isMoving;
+    
     [Header("Player Children")]
     public Transform groundCheck;       // Transform that checks for ground
     [Header("Layers")]
@@ -26,11 +26,16 @@ public class pMove : MonoBehaviour
     [Header("Jump Detetection settings")]
     private bool isGrounded;            // Flag to check if the player is on the ground
     private float groundCheckRadius = 0.2f;  // Radius of the ground check
+    [Header("Melee Attack settings")] 
+    public float meleeDamage;
     [Header("SpellAttackSlot")] 
     public Transform spellSpawm;
     public GameObject spell;
     public float spellDamage;
     public float spellSpeed;
+    [Header("Other Checks")]
+    public bool isAttacking;
+    public bool isMoving;
     
 
     void Start()
@@ -54,6 +59,8 @@ public class pMove : MonoBehaviour
         control.PlayerActions.Jump.performed += ctx => Jump();
         //spell attack input when pressed/performed
         control.PlayerActions.SpellAttack.performed += ctx => SpellAttack();
+        //melee attack input when pressed/performed
+        control.PlayerActions.Attack.performed += ctx => Attack();
     }
     private void OnEnable()
     {
@@ -91,12 +98,18 @@ public class pMove : MonoBehaviour
 
         if (move.x > 0 && !isToTheRight) //moveing right but facing left
         {
-            sr.flipX = false;
+            float temp = transform.localScale.x *-1;
+            float temp2 = transform.localScale.y;
+            float temp3 = transform.localScale.z;
+            transform.localScale = new Vector3(temp, temp2, temp3);
             isToTheRight = true;
         }
         else if (move.x < 0 && isToTheRight) // moving left but facing right
         {
-            sr.flipX = true;
+            float temp = transform.localScale.x *-1;
+            float temp2 = transform.localScale.y;
+            float temp3 = transform.localScale.z;
+            transform.localScale = new Vector3(temp, temp2, temp3);
             isToTheRight = false;
         }
     }
@@ -111,14 +124,31 @@ public class pMove : MonoBehaviour
             jumps--;
         }
     }
-
+//spell attacks
     void SpellAttack()
     {
-        anim.SetTrigger("SpellAttack");
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            anim.SetTrigger("SpellAttack");    
+        }
+        
     }
-
     public void spellSpawning()
     {
         Instantiate(spell, spellSpawm.position, Quaternion.identity);
+    }
+//close combat
+    void Attack()
+    {
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            anim.SetTrigger("Attack");   
+        }
+    }
+    public void resetIsAttacking()
+    {
+        isAttacking = false;
     }
 }
