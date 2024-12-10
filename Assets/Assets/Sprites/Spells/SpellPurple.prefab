@@ -78,6 +78,8 @@ MonoBehaviour:
   player2: {fileID: 0}
   player2Selected: 0
   spellDamage: 0
+  setSpellDuration: 1
+  spellDuration: 0
 --- !u!1001 &1603590147042056757
 PrefabInstance:
   m_ObjectHideFlags: 0

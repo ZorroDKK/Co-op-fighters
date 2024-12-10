@@ -10,6 +10,9 @@ public class spellSettings : MonoBehaviour
     [CanBeNull] public p2Move player2 ;
     public bool player2Selected =false;
     public float spellDamage;
+    public float setSpellDuration = 5f;
+    public float spellDuration;
+    bool startTimer = false;
     private Rigidbody2D rb;
     
     // Start is called before the first frame update
@@ -42,11 +45,22 @@ public class spellSettings : MonoBehaviour
             {
                 rb.velocity = Vector2.left * player1.spellSpeed;
             }
+
+            spellDuration = setSpellDuration;
+            startTimer = true;
         }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (startTimer)
+        {
+            spellDuration -= Time.deltaTime;
+        }
+
+        if (spellDuration <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
